@@ -1,5 +1,13 @@
 import create from 'zustand';
 import axios from 'axios';
+import { api_key } from '../apikey';
+
+
+const KEY_API = api_key
+const TMDB_BASE_URL = 'https://api.themoviedb.org/3/search/movie';
+const TMDB_MOST_RATED_BASE_URL = 'https://api.themoviedb.org/3/movie/now_playing'; // filmes bem avaliados
+
+console.log(KEY_API)
 
 // Criando o store com Zustand
 const useMovieStore = create((set) => ({
@@ -7,25 +15,41 @@ const useMovieStore = create((set) => ({
   loading: false,
   error: null,
 
-  fetchMovies: async (searchTerm) => {
+  fetchTopRatedMovies: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.get(`https://www.omdbapi.com/?s=${searchTerm}&apikey=2a020611`);
-      set({ movies: response.data.Search || [], loading: false });
+      const response = await axios.get(TMDB_MOST_RATED_BASE_URL, {
+        params: {
+          api_key: KEY_API,
+          language: 'pt-BR', 
+          page: 1,
+        },
+      });
+      set({ movies: response.data.results, loading: false });
     } catch (error) {
-      set({ error: 'Falha ao encontrar o filme', loading: false });
+      set({ error: 'Failed to fetch top rated movies', loading: false });
     }
   },
 
-  fetchNewMovies: async (aa) => {
+
+  fetchMovies:  async (query) => {
+    if (!query) {
+      set({ movies: [] }); 
+      return;
+    }
     set({ loading: true, error: null });
     try {
-      const response = await axios.get(`https://api.rapidapi.com/imdb-api-endpoint?rapidapi-key=d9295bc353msh7219f405a84687dp14d7a1jsnfe532143f22c`);
-      set({ movies: response.data.Search || [], loading: false });
+      const response = await axios.get(TMDB_BASE_URL, {
+        params: {
+          api_key: KEY_API,
+          query,
+        },
+      });
+      set({ movies: response.data.results, loading: false });
     } catch (error) {
-      set({ error: 'Falha ao encontrar o filme', loading: false });
+      set({ error: 'Falha ao encontrar o filme.', loading: false });
     }
-  }
+  },
 
 }));
 

@@ -17,11 +17,11 @@ const MovieCard = styled.div`
 `;
 
 const FeaturedMovies = () => {
-  const { movies, fetchNewMovies, loading, error } = useMovieStore();
+  const { movies, fetchMovies, loading, error } = useMovieStore();
 
   useEffect(() => {
-    fetchNewMovies('2010'); 
-  }, [fetchNewMovies]);
+    fetchMovies(); 
+  }, [fetchMovies]);
 
   if (loading) {
     return <div>Loading...</div>;

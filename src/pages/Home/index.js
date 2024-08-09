@@ -1,33 +1,42 @@
-import React from 'react';
-import useMovieStore from '../../store';
-import Header from '../../components/Header';
-import FeaturedMovies from '../../components/FeaturedMovies';
+import React, { useEffect } from "react";
+import useMovieStore from "../../store";
+import Header from "../../components/Header";
+import FeaturedMovies from "../../components/FeaturedMovies";
+import { Container, Movie, MovieList } from "./styles";
 
 const Home = () => {
-  const { movies, loading, error } = useMovieStore(); // Consumindo o store de Zustand
+  const { movies, loading, fetchTopRatedMovies, error } = useMovieStore(); // Consumindo o store de Zustand
+  const imagePath = "https://image.tmdb.org/t/p/w200/";
 
+  useEffect(() => {
+    fetchTopRatedMovies();
+  }, [fetchTopRatedMovies]);
+
+  console.log(fetchTopRatedMovies)
   return (
     <div>
-      <Header /> 
-      <FeaturedMovies />
+      <Header />
+      {/* <FeaturedMovies /> */}
 
-      {error && <div>{error}</div>} 
+      {error && <div>{error}</div>}
 
-      <div>
-        {loading && <p>Loading...</p>} 
+      <Container>
+        <h1>Top Filmes</h1>
+        <MovieList>
+          {loading && <p>Loading...</p>}
 
-        {movies.length > 0 ? (
-          movies.map((movie) => (
-            <div key={movie.imdbID}>
-              <h3>{movie.Title}</h3>
-              <p>{movie.Year}</p>
-              <img src={movie.Poster} alt={movie.Title} />
-            </div>
-          ))
-        ) : (
-          !loading && <p>No movies found.</p> 
-        )}
-      </div>
+          {movies.length > 0
+            ? movies.map((movie) => (
+                <Movie key={movie.id}>
+                  <span>{movie.title}</span>
+                  <img
+                    src={`${imagePath}${movie.poster_path}`}
+                  />
+                </Movie>
+              ))
+            : !loading && <p>No movies found.</p>}
+        </MovieList>
+      </Container>
     </div>
   );
 };
