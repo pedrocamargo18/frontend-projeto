@@ -1,46 +1,81 @@
-import React, { useEffect } from 'react';
-import useMovieStore from '../../store'; // Ajuste o caminho conforme necessário
-import styled from 'styled-components';
+import React from "react";
+import {
+  FeaturedMoviesContainer,
+  FeaturedMovieCard,
+  FeaturedMovieImage,
+  FeaturedMovieTitle,
+  MovieList,
+  MovieCard,
+  MovieImage,
+  MovieTitle,
+  MovieDescription,
+  MovieDetailsContainer,
+  MovieDetail,
+  MovieInfoContainer,
+  GradientShadow,
+  TrailerButton,
+  HighlightedText,
+  MovieRating,
+} from "./styles";
+import { FaFire } from "react-icons/fa";
 
-const MoviesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px; /* Espaçamento entre os filmes */
-  margin-top: 20px; /* Espaçamento superior */
-`;
+const FeaturedMovies = ({ movies,title }) => {
+  if (!movies || movies.length === 0) return <p>Nenhum filme encontrado.</p>;
 
-const MovieCard = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  text-align: center;
-`;
+  // Ordena os filmes por nota e pega os 4 com maior nota
+  const topMovies = movies
+    .sort((a, b) => b.vote_average - a.vote_average)
+    .slice(0, 4);
 
-const FeaturedMovies = () => {
-  const { movies, fetchMovies, loading, error } = useMovieStore();
-
-  useEffect(() => {
-    fetchMovies(); 
-  }, [fetchMovies]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
+  console.log(topMovies);
   return (
-    <MoviesGrid>
-      {movies.map(movie => (
-        <MovieCard key={movie.imdbID}>
-          <img src={movie.Poster} alt={movie.Title} style={{ width: '100%', height: 'auto' }} />
-          <h3>{movie.Title}</h3>
-          <p>{movie.Year}</p>
-        </MovieCard>
-      ))}
-    </MoviesGrid>
+    <FeaturedMoviesContainer>
+      <FeaturedMovieCard>
+        <FeaturedMovieImage
+          src={`https://image.tmdb.org/t/p/original/${topMovies[0].poster_path}`}
+        />
+        <GradientShadow />
+        <MovieInfoContainer>
+          <HighlightedText>
+            <FaFire /> Em Destaque
+          </HighlightedText>
+          <FeaturedMovieTitle>{topMovies[0].title}</FeaturedMovieTitle>
+          <MovieDetailsContainer>
+            <MovieDetail className="rating">
+              {topMovies[0].vote_average.toFixed(1)} |
+            </MovieDetail>
+            <MovieDetail>{topMovies[0].popularity} </MovieDetail>
+            <MovieDetail className="others">
+              {Array.isArray(topMovies[0].genres)
+                ? topMovies[0].genres.map((genre) => genre.name).join(", ")
+                : "N/A"}
+            </MovieDetail>
+            <MovieDetail className="others">
+              {new Date(topMovies[0].release_date).getFullYear()}
+            </MovieDetail>
+          </MovieDetailsContainer>
+          <MovieDescription>{topMovies[0].overview}</MovieDescription>
+          <TrailerButton>Ver Trailer</TrailerButton>
+        </MovieInfoContainer>
+      </FeaturedMovieCard>
+            
+      <MovieList>
+        <h2>{title}</h2>
+        {topMovies.slice(1).map((movie) => (
+          <MovieCard key={movie.id}>
+              <GradientShadow />
+            <MovieImage
+              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            />
+              <MovieRating>{movie.vote_average.toFixed(1)}</MovieRating>
+            <MovieInfoContainer className="movie-side-info-container">
+              <MovieTitle>{movie.title}</MovieTitle>
+              <TrailerButton>Ver Trailer</TrailerButton>
+            </MovieInfoContainer>
+          </MovieCard>
+        ))}
+      </MovieList>
+    </FeaturedMoviesContainer>
   );
 };
 
