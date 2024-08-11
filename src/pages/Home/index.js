@@ -5,6 +5,8 @@ import NowPlayingMovies from "../../components/NowPlayingMovies";
 import ActorListMovies from "../../components/ActorListMovies";
 import RecommendedMovies from "../../components/RecommendedMovies";
 import FeaturedMovies from "../../components/FeaturedMovies";
+
+
 const Home = () => {
   const {
     movies,
@@ -18,6 +20,7 @@ const Home = () => {
     loadingRecommended,
     error,
   } = useMovieStore();
+  
   const imagePath = "https://image.tmdb.org/t/p/w500/";
 
   useEffect(() => {
@@ -25,6 +28,7 @@ const Home = () => {
     fetchPopularActors();
     fetchRecommendedMovies();
   }, [fetchTopRatedMovies, fetchRecommendedMovies, fetchPopularActors]);
+
 
   return (
     <div>

@@ -16,14 +16,23 @@ import {
 } from "./styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 const NowPlayingMovies = ({ title, movies, loading, imagePath }) => {
+
+  const navigate = useNavigate()
+
   const handleScroll = (direction) => {
     const scrollAmount = document.querySelector('.movie-list')?.clientWidth || 0;
     const currentPosition = document.querySelector('.movie-list')?.scrollLeft || 0;
     const newPosition = direction === 'left' ? currentPosition - scrollAmount : currentPosition + scrollAmount;
     document.querySelector('.movie-list')?.scrollTo({ left: newPosition, behavior: 'smooth' });
   };
+
+  const handleViewTrailer = (id) => {
+    navigate(`/movie/${id}`)
+  };
+
 
   return (
     <MoviesSection>
@@ -44,7 +53,7 @@ const NowPlayingMovies = ({ title, movies, loading, imagePath }) => {
                   <GradientShadow />
                   <MovieTitle>
                     <h2>{movie.title}</h2>
-                    <TrailerButton>Assista o trailer</TrailerButton>
+                    <TrailerButton onClick={() => handleViewTrailer(movie.id)}>Assista o trailer</TrailerButton>
                   </MovieTitle>
                 </MovieCard>
               ))

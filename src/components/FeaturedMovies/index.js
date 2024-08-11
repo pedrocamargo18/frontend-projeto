@@ -27,7 +27,6 @@ const FeaturedMovies = ({ movies,title }) => {
     .sort((a, b) => b.vote_average - a.vote_average)
     .slice(0, 4);
 
-  console.log(topMovies);
   return (
     <FeaturedMoviesContainer>
       <FeaturedMovieCard>
