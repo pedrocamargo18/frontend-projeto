@@ -16,7 +16,10 @@ import {
   TrailerButton,
   HighlightedText,
   MovieRating,
+  SubTitle,
 } from "./styles";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FaFire } from "react-icons/fa";
 
 const FeaturedMovies = ({ movies,title }) => {
@@ -54,12 +57,12 @@ const FeaturedMovies = ({ movies,title }) => {
             </MovieDetail>
           </MovieDetailsContainer>
           <MovieDescription>{topMovies[0].overview}</MovieDescription>
-          <TrailerButton>Ver Trailer</TrailerButton>
+          <TrailerButton>Assistir ao trailer <FontAwesomeIcon icon={faPlay} /></TrailerButton>
         </MovieInfoContainer>
       </FeaturedMovieCard>
             
       <MovieList>
-        <h2>{title}</h2>
+        <SubTitle>{title}</SubTitle>
         {topMovies.slice(1).map((movie) => (
           <MovieCard key={movie.id}>
               <GradientShadow />
@@ -69,7 +72,7 @@ const FeaturedMovies = ({ movies,title }) => {
               <MovieRating>{movie.vote_average.toFixed(1)}</MovieRating>
             <MovieInfoContainer className="movie-side-info-container">
               <MovieTitle>{movie.title}</MovieTitle>
-              <TrailerButton>Ver Trailer</TrailerButton>
+              <TrailerButton>Assistir ao trailer <FontAwesomeIcon icon={faPlay} /></TrailerButton>
             </MovieInfoContainer>
           </MovieCard>
         ))}

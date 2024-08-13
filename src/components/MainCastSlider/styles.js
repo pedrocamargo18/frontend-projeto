@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ActorsSection = styled.div`
   padding-top: 2rem;
-  margin: 0;
+  margin: 2rem;
 `;
 
 export const ActorsSectionHeader = styled.div`
@@ -11,34 +11,32 @@ export const ActorsSectionHeader = styled.div`
   align-items: center;
   margin-bottom: 1.5rem;
   margin: 1rem;
-
 `;
 
 export const ActorsSectionTitle = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   color: white;
-
+  border-left: 3px solid #fff;
+  padding-left: 1rem;
   @media (max-width: 768px) {
-    font-size: 1.5rem; /* Reduz o tamanho da fonte em telas menores */
+    font-size: 1.5rem;
   }
 `;
 
 export const ActorListContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 1rem
 `;
 
 export const ActorList = styled.div`
   display: flex;
-  gap: 1rem;
   overflow: hidden;
   scroll-behavior: smooth;
   width: 100%;
 
   @media (max-width: 768px) {
-    gap: 0.5rem; /* Reduz o espaço entre os atores em telas menores */
+    gap: 0.5rem;
   }
 `;
 
@@ -52,21 +50,21 @@ export const ActorCard = styled.div`
   text-align: center;
 
   @media (max-width: 1024px) {
-    width: 25%; /* Ajusta a largura do card em telas médias */
+    width: 25%; 
   }
 
   @media (max-width: 768px) {
-    width: 45%; /* Ajusta a largura do card em telas menores */
+    width: 45%; 
   }
 
   @media (max-width: 480px) {
-    width: 100%; /* O card ocupa toda a largura em telas pequenas */
+    width: 100%;
   }
 `;
 
 export const ActorImage = styled.img`
   width: 90%;
-  height: 20rem;
+  height: 15rem;
   object-fit: cover;
   border-radius: 1.5rem;
 `;
@@ -74,29 +72,29 @@ export const ActorImage = styled.img`
 export const ActorName = styled.div`
   position: absolute;
   bottom: 30px;
-  left: 20px;
+  left: 30px;
   right: 0;
   color: white;
   font-weight: bold;
-  text-align: left; 
+  text-align: left;
   font-size: 1.2rem;
 
   @media (max-width: 768px) {
-    font-size: 1rem; /* Reduz o tamanho da fonte do nome em telas menores */
+    font-size: 1rem; 
   }
 `;
 
 export const ActorAge = styled.div`
   position: absolute;
   bottom: 10px;
-  left:20px;
+  left: 30px;
   right: 0;
   color: white;
   font-size: 1rem;
-  text-align: left; 
+  text-align: left;
 
   @media (max-width: 768px) {
-    font-size: 0.9rem; /* Reduz o tamanho da fonte da idade em telas menores */
+    font-size: 0.9rem; 
   }
 `;
 
@@ -115,7 +113,12 @@ export const ArrowButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Adiciona um efeito de hover */
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.1
+    ); /* Adiciona um efeito de hover */
   }
 `;
 
@@ -124,26 +127,26 @@ export const RightArrowButton = styled(ArrowButton)``;
 
 export const MovieImage = styled.img`
   width: 100%;
-  height: auto; /* Ajusta a altura automaticamente */
-  border-radius: 1.5rem; /* Para um visual mais suave */
+  height: auto; 
+  border-radius: 1.5rem; 
 `;
 
 export const TrailerButton = styled.button`
   position: absolute;
-  bottom: 10px; /* Ajusta a posição do botão em relação à imagem */
+  bottom: 10px; 
   left: 50%;
-  transform: translateX(-50%); /* Centraliza o botão */
-  background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+  transform: translateX(-50%); 
+  background-color: rgba(255, 255, 255, 0.8); 
   color: black;
   border: none;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
-  z-index: 1; /* Garante que o botão fique acima da imagem */
+  z-index: 1;
 
   &:hover {
-    background-color: #0056b3; /* Muda a cor ao passar o mouse */
-    color: white; /* Muda a cor do texto ao passar o mouse */
+    background-color: #0056b3; 
+    color: white; 
   }
 `;

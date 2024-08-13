@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const RecommendedSection = styled.div`
   padding-top: 2rem;
-  margin: 4rem ;
+  margin: 4rem;
 `;
 
 export const RecommendedSectionHeader = styled.div`
@@ -16,6 +16,8 @@ export const RecommendedSectionTitle = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   color: white;
+  border-left: 3px solid #fff;
+  padding-left: 1rem;
 `;
 
 export const MovieListContainer = styled.div`

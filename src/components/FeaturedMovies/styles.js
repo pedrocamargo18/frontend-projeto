@@ -63,6 +63,7 @@ export const FeaturedMovieTitle = styled.h2`
   font-weight: bold;
   padding: 0.5rem;
   z-index: 3;
+  
 `;
 
 export const MovieDetailsContainer = styled.div`
@@ -132,6 +133,14 @@ export const MovieList = styled.div`
   justify-content: space-between;
   width: 40%;
   margin-left: 1rem;
+`;
+
+export const SubTitle = styled.h2`
+  border-left: 3px solid #fff;
+  padding-left: 1rem;
+  color: white;
+  font-size: 1.5rem;
+
 `;
 
 export const MovieCard = styled.div`

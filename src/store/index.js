@@ -121,7 +121,22 @@ clearMovieDetails: () => {
   set({ movieDetails: null });
 },
 
-
+//similares
+fetchSimilarMovies: async (movieId) => {
+  set({ loadingSimilar: true });
+  try {
+    const response = await axios.get(`${TMDB_MOVIE_DETAILS_URL}/${movieId}/similar`, {
+      params: {
+        api_key: KEY_API,
+        language: 'pt-BR',
+        page: 1,
+      },
+    });
+    set({ similarMovies: response.data.results, loadingSimilar: false });
+  } catch (error) {
+    set({ error: 'Falha ao buscar filmes semelhantes', loadingSimilar: false });
+  }
+},
 
 }));
 

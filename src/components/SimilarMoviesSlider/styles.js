@@ -1,78 +1,78 @@
 import styled from "styled-components";
 
-export const ActorsSection = styled.div`
+export const SimilarSection = styled.div`
   padding-top: 2rem;
-  margin: 4rem;
+  margin: 2rem;
 `;
 
-export const ActorsSectionHeader = styled.div`
+export const SimilarSectionHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  margin: 1rem;
 `;
 
-export const ActorsSectionTitle = styled.h1`
+export const SimilarSectionTitle = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   color: white;
   border-left: 3px solid #fff;
   padding-left: 1rem;
-
   @media (max-width: 768px) {
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
   }
 `;
 
-export const ActorListContainer = styled.div`
+export const MovieListContainer = styled.div`
   display: flex;
   align-items: center;
+  margin: 2rem;
 `;
 
-export const ActorList = styled.div`
+export const MovieList = styled.div`
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   width: 100%;
 
   @media (max-width: 768px) {
-    gap: 0.5rem; 
+    gap: 0.5rem;
   }
 `;
 
-export const ActorCard = styled.div`
+export const MovieCard = styled.div`
   position: relative;
-  width: 20%;
+  width: 24%;
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
+  margin: 0rem 0.5rem;
 
   @media (max-width: 1024px) {
-    width: 25%; 
+    width: 30%;
   }
 
   @media (max-width: 768px) {
-    width: 45%; 
+    width: 45%;
   }
 
   @media (max-width: 480px) {
-    width: 100%; 
+    width: 100%;
   }
 `;
 
-export const ActorImage = styled.img`
-  width: 90%;
-  height: 15em;
+export const MovieImage = styled.img`
+  width: 100%;
+  height: 15rem;
   object-fit: cover;
   border-radius: 1.5rem;
 `;
 
-export const ActorName = styled.div`
+export const MovieTitle = styled.div`
   position: absolute;
   bottom: 30px;
-  left: 30px;
+  left: 10px;
   right: 0;
   color: white;
   font-weight: bold;
@@ -80,26 +80,22 @@ export const ActorName = styled.div`
   font-size: 1.2rem;
 
   @media (max-width: 768px) {
-    font-size: 1rem; 
-  }
-`;
-
-export const ActorAge = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  color: white;
-  font-size: 1rem;
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 `;
 
 export const NavigationContainer = styled.div`
   display: flex;
   gap: 10px;
+  cursor: pointer;
+
+  svg {
+    color: white;
+    font-size: 1.5rem;
+    &:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
 `;
 
 export const ArrowButton = styled.button`
@@ -112,9 +108,10 @@ export const ArrowButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Adiciona um efeito de hover */
+    background-color: rgba(255, 255, 255, 0.1);
   }
 `;
 
 export const LeftArrowButton = styled(ArrowButton)``;
+
 export const RightArrowButton = styled(ArrowButton)``;

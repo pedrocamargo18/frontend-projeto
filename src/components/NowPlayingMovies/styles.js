@@ -32,7 +32,8 @@ export const MoviesSectionTitle = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   color: white;
-
+  border-left: 3px solid #fff;
+  padding-left: 1rem;
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }

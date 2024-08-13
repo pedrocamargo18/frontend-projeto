@@ -5,14 +5,16 @@ import Header from "../../components/Header";
 import MainCastSlider from "../../components/MainCastSlider";
 import useMovieStore from "../../store";
 import { useParams } from "react-router-dom";
+import SimilarMoviesSlider from "../../components/SimilarMoviesSlider";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
-  const { fetchMovieDetails, movieDetails, credits } = useMovieStore();
+  const { fetchMovieDetails, movieDetails, credits,fetchSimilarMovies, similarMovies } = useMovieStore();
 
   useEffect(() => {
     fetchMovieDetails(id);
-  }, [fetchMovieDetails, id]);
+    fetchSimilarMovies(id);
+  }, [fetchMovieDetails, id,fetchSimilarMovies]);
 
   if (!movieDetails) {
     return <div>Loading...</div>; 
@@ -23,6 +25,7 @@ const MovieDetailsPage = () => {
       <Header />
       <MovieDetails movie={movieDetails} />
       {credits && credits.cast && <MainCastSlider title="Elenco principal" actors={credits.cast} />}
+      <SimilarMoviesSlider title="Semelhantes" movies={similarMovies} />
     </div>
   );
 };
