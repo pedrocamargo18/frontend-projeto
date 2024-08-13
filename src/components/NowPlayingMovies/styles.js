@@ -63,8 +63,8 @@ export const MovieCard = styled.div`
   flex-shrink: 0;
   display: flex;
   align-items: flex-end;
+  margin: 0.5rem 0;
 
-  /* Responsividade */
   @media (max-width: 1024px) {
     width: 30%;
   }
@@ -100,13 +100,19 @@ export const MovieTitle = styled.div`
 
 export const TrailerButton = styled.button`
   margin-top: 0.5rem;
-  background-color: #007bff;
+  margin-bottom: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  max-width: 250px;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
+  font-size: 1.2rem;
+  font-weight: semibold;
+  border-radius: 0.7rem;
   cursor: pointer;
+  z-index: 2;
+
   &:hover {
     background-color: #0056b3;
   }

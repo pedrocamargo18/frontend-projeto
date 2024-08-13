@@ -51,6 +51,7 @@ const NowPlayingMovies = ({ title, movies, loading, imagePath }) => {
               <MovieCard key={movie.id}>
                   <MovieImage src={`${imagePath}${movie.poster_path}`} />
                   <GradientShadow />
+                 
                   <MovieTitle>
                     <h2>{movie.title}</h2>
                     <TrailerButton onClick={() => handleViewTrailer(movie.id)}>Assista o trailer</TrailerButton>

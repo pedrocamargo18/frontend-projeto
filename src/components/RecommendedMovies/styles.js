@@ -38,14 +38,15 @@ export const MovieList = styled.div`
   }
 `;
 
+
 export const MovieCard = styled.div`
   position: relative;
   width: 25%;
   flex-shrink: 0;
   display: flex;
   align-items: flex-end;
+  margin: 0.5rem 0;
 
-  /* Responsividade */
   @media (max-width: 1024px) {
     width: 30%;
   }
@@ -58,6 +59,7 @@ export const MovieCard = styled.div`
     width: 100%;
   }
 `;
+
 
 export const MovieImage = styled.img`
   width: 100%;
@@ -110,3 +112,24 @@ export const ArrowButton = styled.button`
 export const LeftArrowButton = styled(ArrowButton)``;
 
 export const RightArrowButton = styled(ArrowButton)``;
+
+
+export const TrailerButton = styled.button`
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  max-width: 250px;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: semibold;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  z-index: 2;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;

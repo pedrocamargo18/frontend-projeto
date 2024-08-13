@@ -9,6 +9,7 @@ const TMDB_MOST_RATED_BASE_URL = 'https://api.themoviedb.org/3/movie/now_playing
 const TMDB_POPULAR_ACTORS_URL = 'https://api.themoviedb.org/3/person/popular';
 const TMDB_RECOMMENDED_BASE_URL = 'https://api.themoviedb.org/3/movie/popular'; 
 const TMDB_MOVIE_DETAILS_URL = 'https://api.themoviedb.org/3/movie'; 
+const TMDB_ACTOR_DETAILS_URL ='https://api.themoviedb.org/3/person';
 
 // Criando o store com Zustand
 const useMovieStore = create((set) => ({
@@ -119,6 +120,22 @@ fetchMovieDetails: async (movieId) => {
 // Limpa os detalhes do filme
 clearMovieDetails: () => {
   set({ movieDetails: null });
+},
+
+//buscar detalhes do ator pelo ID
+fetchActorDetails: async (actorId) => {
+  set({ loading: true, error: null });
+  try {
+    const response = await axios.get(`${TMDB_ACTOR_DETAILS_URL}/${actorId}`, {
+      params: {
+        api_key: KEY_API,
+        language: 'pt-BR',
+      },
+    });
+    set({ actorDetails: response.data, loading: false });
+  } catch (error) {
+    set({ error: 'Falha ao buscar os detalhes do ator.', loading: false });
+  }
 },
 
 //similares

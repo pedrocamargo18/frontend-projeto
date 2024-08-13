@@ -11,9 +11,11 @@ import {
   RecommendedSection,
   RecommendedSectionHeader,
   RecommendedSectionTitle,
-} from "./styles"; // Ajuste o caminho para os estilos conforme necessário
+  TrailerButton
+} from "./styles"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 const RecommendedMovies = ({ title = "Filmes Recomendados", movies = [], loading = false, imagePath = "" }) => {
   const handleScroll = (direction) => {
@@ -23,6 +25,12 @@ const RecommendedMovies = ({ title = "Filmes Recomendados", movies = [], loading
     document.querySelector('.movie-list')?.scrollTo({ left: newPosition, behavior: 'smooth' });
   };
 
+  const navigate = useNavigate()
+  const handleViewTrailer = (id) => {
+    navigate(`/movie/${id}`)
+
+  }
+  
   return (
     <RecommendedSection>
       <RecommendedSectionHeader>
@@ -45,6 +53,7 @@ const RecommendedMovies = ({ title = "Filmes Recomendados", movies = [], loading
               <MovieCard key={movie.id}>
                 <MovieImage src={`${imagePath}${movie.poster_path}`} alt={movie.title} />
                 <MovieTitle>{movie.title}</MovieTitle>
+                {/* <TrailerButton onClick={() => handleViewTrailer(movie.id)}>Assista o trailer</TrailerButton> */}
               </MovieCard>
             ))
           ) : (

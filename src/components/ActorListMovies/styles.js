@@ -48,6 +48,7 @@ export const ActorCard = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 
   @media (max-width: 1024px) {
     width: 25%; 
