@@ -4,6 +4,11 @@ export const FeaturedMoviesContainer = styled.div`
   display: flex;
   align-items: flex-start;
   margin: 2rem 4rem;
+  flex-direction: column;
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+  }
 `;
 
 export const FeaturedMovieCard = styled.div`
@@ -19,6 +24,10 @@ export const FeaturedMovieImage = styled.img`
   height: 750px;
   object-fit: cover;
   border-radius: 1.5rem;
+
+  @media (max-width: 600px) {
+    height: 400px;
+  }
 `;
 
 export const GradientShadow = styled.div`
@@ -33,15 +42,20 @@ export const GradientShadow = styled.div`
 `;
 
 export const MovieInfoContainer = styled.div`
-    position: absolute;
-  bottom: 10px; 
-  left: 10px; 
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
   color: white;
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  text-align: left; 
+  text-align: left;
+
+  @media (max-width: 600px) {
+    bottom: 5px;
+    left: 5px;
+  }
 `;
 
 export const HighlightedText = styled.h3`
@@ -63,7 +77,10 @@ export const FeaturedMovieTitle = styled.h2`
   font-weight: bold;
   padding: 0.5rem;
   z-index: 3;
-  
+
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const MovieDetailsContainer = styled.div`
@@ -71,6 +88,10 @@ export const MovieDetailsContainer = styled.div`
   display: flex;
   gap: 0.5rem;
   margin: 0;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const MovieDetail = styled.div`
@@ -96,7 +117,6 @@ export const MovieDetail = styled.div`
       content: "•";
       color: rgba(180, 180, 180, 1);
       font-weight: bold;
-
       margin-right: 0.5rem;
     }
   }
@@ -114,6 +134,7 @@ export const MovieRating = styled.div`
   color: white;
   z-index: 3;
   padding: 0.3rem 0.5rem;
+
   &::before {
     content: "★";
     color: gold;
@@ -133,6 +154,11 @@ export const MovieList = styled.div`
   justify-content: space-between;
   width: 40%;
   margin-left: 1rem;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-left: 0;
+  }
 `;
 
 export const SubTitle = styled.h2`
@@ -141,6 +167,9 @@ export const SubTitle = styled.h2`
   color: white;
   font-size: 1.5rem;
 
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export const MovieCard = styled.div`
@@ -151,6 +180,10 @@ export const MovieCard = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const MovieImage = styled.img`
@@ -158,12 +191,20 @@ export const MovieImage = styled.img`
   height: 230px;
   object-fit: cover;
   border-radius: 1.5rem;
+
+  @media (max-width: 600px) {
+    height: 150px;
+  }
 `;
 
 export const MovieTitle = styled.h3`
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export const TrailerButton = styled.button`
@@ -183,28 +224,5 @@ export const TrailerButton = styled.button`
 
   &:hover {
     background-color: #0056b3;
-  }
-`;
-
-const mediaQueries = {
-  small: "@media (max-width: 600px)",
-  medium: "@media (max-width: 900px)",
-};
-
-export const MovieInfoContainerResponsive = styled(MovieInfoContainer)`
-  ${mediaQueries.small} {
-    bottom: 10px;
-    left: 5px;
-  }
-
-  ${mediaQueries.medium} {
-    bottom: 15px;
-    left: 10px;
-  }
-`;
-
-export const FeaturedMovieTitleResponsive = styled(FeaturedMovieTitle)`
-  ${mediaQueries.small} {
-    font-size: 1.5rem;
   }
 `;

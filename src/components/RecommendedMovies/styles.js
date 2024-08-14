@@ -71,14 +71,15 @@ export const MovieImage = styled.img`
 export const MovieTitle = styled.div`
   position: absolute;
   bottom: 20%;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0.5rem;
+  left: 5px;
+  font-size: 1.5rem;
+  padding: 1rem;
   text-align: left;
   color: white;
   border-radius: 0.5rem 0.5rem 0 0;
   margin: 0;
   width: 90%;
+  z-index: 2;
 `;
 
 export const NavigationContainer = styled.div`
@@ -115,8 +116,9 @@ export const RightArrowButton = styled(ArrowButton)``;
 
 
 export const TrailerButton = styled.button`
-  margin-top: 0.5rem;
-  margin-bottom: 0.25rem;
+  position: absolute;
+  bottom: 10px;
+  left: 5%;
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(5px);
   max-width: 250px;
@@ -132,4 +134,20 @@ export const TrailerButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+`;
+
+export const MovieImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+export const GradientShadow = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  z-index: 1;
+  border-radius: 1.5rem;
 `;

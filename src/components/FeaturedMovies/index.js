@@ -18,17 +18,36 @@ import {
   MovieRating,
   SubTitle,
 } from "./styles";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FaFire } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const FeaturedMovies = ({ movies,title }) => {
+const FeaturedMovies = ({ movies, title }) => {
+  const navigate = useNavigate()
   if (!movies || movies.length === 0) return <p>Nenhum filme encontrado.</p>;
 
   // Ordena os filmes por nota e pega os 4 com maior nota
   const topMovies = movies
-    .sort((a, b) => b.vote_average - a.vote_average)
-    .slice(0, 4);
+  .sort((a, b) => b.vote_average - a.vote_average)
+  .slice(0, 4);
+  
+    // Formatar a popularidade
+    const popularityString = topMovies[0].popularity.toString().replace('.', '');
+    const popularity = parseInt(popularityString);
+    let formattedPopularity;
+    if (popularity >= 1000000) {
+      formattedPopularity = `${(popularity / 1000000).toFixed(1).replace('.', ',')} mi`;
+    } else if (popularity >= 1000) {
+      formattedPopularity = `${Math.floor(popularity / 1000)} mil`;
+    } else {
+      formattedPopularity = popularity.toString(); // Caso seja menor que 1000
+    }
+  
+
+  const handleViewTrailer = (id) => {
+    navigate(`/movie/${id}`);
+  };
 
   return (
     <FeaturedMoviesContainer>
@@ -46,7 +65,7 @@ const FeaturedMovies = ({ movies,title }) => {
             <MovieDetail className="rating">
               {topMovies[0].vote_average.toFixed(1)} |
             </MovieDetail>
-            <MovieDetail>{topMovies[0].popularity} </MovieDetail>
+            <MovieDetail>{formattedPopularity} </MovieDetail>
             <MovieDetail className="others">
               {Array.isArray(topMovies[0].genres)
                 ? topMovies[0].genres.map((genre) => genre.name).join(", ")
@@ -57,22 +76,26 @@ const FeaturedMovies = ({ movies,title }) => {
             </MovieDetail>
           </MovieDetailsContainer>
           <MovieDescription>{topMovies[0].overview}</MovieDescription>
-          <TrailerButton>Assistir ao trailer <FontAwesomeIcon icon={faPlay} /></TrailerButton>
+          <TrailerButton   onClick={() => handleViewTrailer(topMovies[0].id)}>
+            Assistir ao trailer <FontAwesomeIcon icon={faPlay} />
+          </TrailerButton>
         </MovieInfoContainer>
       </FeaturedMovieCard>
-            
+
       <MovieList>
         <SubTitle>{title}</SubTitle>
         {topMovies.slice(1).map((movie) => (
           <MovieCard key={movie.id}>
-              <GradientShadow />
+            <GradientShadow />
             <MovieImage
               src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             />
-              <MovieRating>{movie.vote_average.toFixed(1)}</MovieRating>
+            <MovieRating>{movie.vote_average.toFixed(1)}</MovieRating>
             <MovieInfoContainer className="movie-side-info-container">
               <MovieTitle>{movie.title}</MovieTitle>
-              <TrailerButton>Assistir ao trailer <FontAwesomeIcon icon={faPlay} /></TrailerButton>
+              <TrailerButton onClick={() => handleViewTrailer(movie.id)}>
+                Assistir ao trailer <FontAwesomeIcon icon={faPlay} />
+              </TrailerButton>
             </MovieInfoContainer>
           </MovieCard>
         ))}

@@ -130,9 +130,14 @@ fetchActorDetails: async (actorId) => {
       params: {
         api_key: KEY_API,
         language: 'pt-BR',
+        append_to_response: 'movie_credits', 
       },
     });
-    set({ actorDetails: response.data, loading: false });
+   // Extraindo os detalhes do ator e os filmes da resposta
+   const actorDetails = response.data;
+   const movies = actorDetails.movie_credits.cast;
+    
+    set({ actorDetails: response.data,movies, loading: false });
   } catch (error) {
     set({ error: 'Falha ao buscar os detalhes do ator.', loading: false });
   }

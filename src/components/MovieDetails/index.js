@@ -38,7 +38,6 @@ const MovieDetails = ({ movie }) => {
   // Formatar a popularidade
   const popularityString = movie.popularity.toString().replace('.', '');
   const popularity = parseInt(popularityString);
-  console.log(popularity)
   let formattedPopularity;
   if (popularity >= 1000000) {
     formattedPopularity = `${(popularity / 1000000).toFixed(1).replace('.', ',')} mi`;
@@ -49,7 +48,6 @@ const MovieDetails = ({ movie }) => {
   }
 
   const topActors = movie.credits.cast.slice(0, 5);
-  console.log(movie)
   return (
     <div>
       <ContainerMovieCard>
