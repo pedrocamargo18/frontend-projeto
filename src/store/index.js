@@ -35,22 +35,21 @@ const useMovieStore = create((set) => ({
   },
 
 //pesquisa os filmes
-  fetchMovies:  async (query) => {
-    if (!query) {
-      set({ movies: [] }); 
-      return;
-    }
+  fetchMovies:  async (query, releaseYear) => {
+
     set({ loading: true, error: null });
     try {
       const response = await axios.get(TMDB_BASE_URL, {
         params: {
           api_key: KEY_API,
-          query,
+          query: query,
+          language: 'pt-BR',
+          ...(releaseYear && { year: releaseYear }), 
         },
       });
-      set({ movies: response.data.results, loading: false });
+      set({ searchResults: response.data.results, loading: false });
     } catch (error) {
-      set({ error: 'Falha ao encontrar o filme.', loading: false });
+      set({ error: 'Falha ao buscar filmes.', loading: false });
     }
   },
 
